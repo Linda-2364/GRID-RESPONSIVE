@@ -1,0 +1,322 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    padding: 2rem 1rem;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background: rgba(220, 20, 60, 0.1);
+    border-radius: 15px;
+    border: 2px solid rgba(220, 20, 60, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 10px rgba(220, 20, 60, 0.5);
+}
+
+header h1 i {
+    color: #dc143c;
+    margin-right: 10px;
+}
+
+header p {
+    color: #ccc;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+/* ========================================
+   GRID RESPONSIVE CON AUTO-FIT
+   - Se adapta automáticamente al espacio disponible
+   - Mínimo 250px, máximo 1fr (fracción disponible)
+   ======================================== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ========================================
+   GALLERY ITEMS - TECNOLOGÍA GAMER
+   ======================================== */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: linear-gradient(145deg, #1e1e1e, #151515);
+    border: 1px solid rgba(220, 20, 60, 0.2);
+}
+
+.gallery-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(220, 20, 60, 0.5);
+    border-color: rgba(220, 20, 60, 0.6);
+}
+
+.gallery-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(220, 20, 60, 0) 0%,
+        rgba(220, 20, 60, 0.1) 50%,
+        rgba(220, 20, 60, 0) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover::before {
+    opacity: 1;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    filter: brightness(0.9);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+    filter: brightness(1);
+}
+
+/* Badge de producto */
+.product-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #dc143c, #ff0033);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+}
+
+.product-badge.sale {
+    background: linear-gradient(135deg, #00cc00, #00ff00);
+}
+
+.product-badge.new {
+    background: linear-gradient(135deg, #ff9900, #ffcc00);
+}
+
+.product-badge.hot {
+    background: linear-gradient(135deg, #ff3300, #ff6600);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, 
+        rgba(10, 10, 10, 0.95) 0%,
+        rgba(10, 10, 10, 0.8) 50%,
+        rgba(10, 10, 10, 0.3) 100%);
+    padding: 1.5rem;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.gallery-item:hover .overlay {
+    transform: translateY(0);
+}
+
+.overlay h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.overlay h3 i {
+    color: #dc143c;
+    margin-right: 8px;
+}
+
+.overlay p {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.price-tag {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.current-price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #dc143c;
+}
+
+.old-price {
+    font-size: 1rem;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.buy-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #dc143c, #ff0033);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.buy-button:hover {
+    background: linear-gradient(135deg, #ff0033, #dc143c);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   Mobile-first approach
+   ======================================== */
+
+/* Móvil pequeño: 1 columna */
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    header {
+        padding: 1rem;
+    }
+    
+    .product-badge {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+    }
+}
+
+/* Tablet: Ajustar gap */
+@media (min-width: 768px) {
+    .gallery {
+        gap: 2rem;
+    }
+    
+    .gallery-item {
+        border-radius: 20px;
+    }
+}
+
+/* Desktop: Ajustar tamaño mínimo */
+@media (min-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .gallery-item img {
+        height: 300px;
+    }
+    
+    .overlay {
+        padding: 2rem;
+    }
+    
+    .overlay h3 {
+        font-size: 1.5rem;
+    }
+    
+    .overlay p {
+        font-size: 1rem;
+    }
+}
+
+/* Desktop grande: Límite de columnas */
+@media (min-width: 1400px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-15px) scale(1.03);
+    }
+}
+
+/* Animaciones especiales */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(220, 20, 60, 0.6);
+    }
+    100% {
+        box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+    }
+}
+
+.gallery-item:nth-child(3n) {
+    animation: pulse 3s infinite;
+}
+
+/* Scroll personalizado */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #dc143c, #ff0033);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ff0033, #dc143c);
+}
